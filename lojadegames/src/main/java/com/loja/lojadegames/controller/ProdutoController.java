@@ -44,5 +44,10 @@ public class ProdutoController
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.produto.save(produto));
 	}
 	
-	
+
+	@PutMapping
+	public ResponseEntity<ProdutoLojaDeGames> put(@RequestBody ProdutoLojaDeGames produto)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(this.produto.save(produto));
+	}
 }
