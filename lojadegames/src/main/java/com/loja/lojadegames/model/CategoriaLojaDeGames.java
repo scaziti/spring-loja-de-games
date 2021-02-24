@@ -1,10 +1,13 @@
 package com.loja.lojadegames.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,10 +29,10 @@ public class CategoriaLojaDeGames
 	@NotNull
 	private boolean ativo;
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
-	private ProdutoLojaDeGames produto;
-
+	private List<ProdutoLojaDeGames> produto;
+	
 	public Long getId() {
 		return id;
 	}
@@ -54,13 +57,14 @@ public class CategoriaLojaDeGames
 		this.ativo = ativo;
 	}
 
-	public ProdutoLojaDeGames getProduto() {
+	public List<ProdutoLojaDeGames> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(ProdutoLojaDeGames produto) {
+	public void setProduto(List<ProdutoLojaDeGames> produto) {
 		this.produto = produto;
 	}
+
 	
 	
 }
