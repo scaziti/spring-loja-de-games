@@ -39,6 +39,12 @@ public class CategoriaController
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping("/nome/{nomeCategoria}")
+	public ResponseEntity<List<CategoriaLojaDeGames>> GetByTitulo(@PathVariable String nomeCategoria)
+	{
+		return ResponseEntity.ok(categoriaLoja.findAllByNomeCategoriaContainingIgnoreCase(nomeCategoria));
+	}
+	
 	@PostMapping
 	public ResponseEntity<CategoriaLojaDeGames> post(@RequestBody CategoriaLojaDeGames categoria)
 	{
