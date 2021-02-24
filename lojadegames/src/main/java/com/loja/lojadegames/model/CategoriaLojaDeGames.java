@@ -4,9 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -22,6 +25,10 @@ public class CategoriaLojaDeGames
 	
 	@NotNull
 	private boolean ativo;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("categoria")
+	private ProdutoLojaDeGames produto;
 
 	public Long getId() {
 		return id;
@@ -45,6 +52,14 @@ public class CategoriaLojaDeGames
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public ProdutoLojaDeGames getProduto() {
+		return produto;
+	}
+
+	public void setProduto(ProdutoLojaDeGames produto) {
+		this.produto = produto;
 	}
 	
 	
